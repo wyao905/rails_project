@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :users, :animals, :exhibits, :donations
 
   get '/', to: 'welcome#home'
+  get '/signin', to: 'sessions#new'
+  post '/sessions', to: 'sessions#create'
+  
 end
