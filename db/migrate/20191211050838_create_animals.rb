@@ -6,6 +6,7 @@ class CreateAnimals < ActiveRecord::Migration[6.0]
       t.integer :happiness
       t.string :hunger
       t.string :health
+      t.boolean :adopted, :default => false
 
       t.timestamps
     end
