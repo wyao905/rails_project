@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :username
       t.integer :balance
       t.boolean :zookeeper
-      t.string :donation_status
       t.string :password_digest
 
       t.timestamps

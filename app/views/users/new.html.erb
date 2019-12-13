@@ -5,8 +5,7 @@
     <%= f.label 'Starting Balance: ' %>
     <%= f.text_field :balance %><br>
     <%= f.label 'Password: ' %>
-    <%= f.text_field :password %><br>
-    <%= f.label 'Confirm Password' %>
-    <%= f.text_field :confirm_password %><br>
+    <%= f.text_field :password_digest %><br>
+    
     <%= f.submit "Create Account" %>
 <% end %>

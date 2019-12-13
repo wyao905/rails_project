@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2019_12_11_050838) do
     t.string "username"
     t.integer "balance"
     t.boolean "zookeeper"
-    t.string "donation_status"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
