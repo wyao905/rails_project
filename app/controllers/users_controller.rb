@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     end
 
     def show
+        @user = current_user
     end
 
     def new
@@ -13,7 +14,12 @@ class UsersController < ApplicationController
 
     def create
         user = User.create(user_params(:username, :balance, :password))
-        binding.pry
+        if user.save
+            session[:user_id] = user.id
+            redirect_to user_path(user)
+        else
+            render :new
+        end
     end
 
     def edit

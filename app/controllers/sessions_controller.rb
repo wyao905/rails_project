@@ -3,13 +3,18 @@ class SessionsController < ApplicationController
     end
 
     def create
-        binding.pry
-        user = User.find_by(username: params[:user][:name])
-        if user.authenticate(params[:password])
-            session[:user_id] = user.id
-            redirect_to "/users/#{user.id}"
-        else
+        user = User.find_by(username: params[:username])
+        if user.nil?
+            flash[:message] = "Incorrect Username"
             render :new
+        else
+            if !user.authenticate(params[:password])
+                flash[:message] = "Incorrect Password"
+                render :new
+            else
+                session[:user_id] = user.id
+                redirect_to "/users/#{user.id}"
+            end
         end
     end
 
