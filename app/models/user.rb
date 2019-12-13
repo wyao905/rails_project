@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_secure_password
+    
     has_many :donations
     has_many :actions
     has_many :exhibits, through: :donations
@@ -7,6 +9,8 @@ class User < ApplicationRecord
     def donation_status
         if self.zookeeper
             "Zookeepers do not have access to donation functions and benefits."
+        elsif self.donations.size == 0
+            "You have made no donations."
         else
             sum = 0
             self.donations.each{|donation| sum += donation.amount}

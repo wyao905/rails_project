@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create(user_params[:username, :balance, :zookeeper, :password])
+        user = User.create(user_params(:username, :balance, :password))
         binding.pry
     end
 
