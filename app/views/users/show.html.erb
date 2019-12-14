@@ -1,1 +1,21 @@
-<h3>Welcome <%= @user.username %>!</h3>
+<h1>Welcome <%= @user.username %>!</h1>
+<p>Your remaining balance: $<%= @user.balance %><br></p>
+<p>
+    <h3>Your Donations</h3>
+    <% if @user.donations.size == 0 %>
+        <%= "You have made no donations." %>
+    <% else %>
+        <% @user.donations.each do |donation| %>
+            <p>
+                <%= "$#{donation.amount} made to #{donation.exhibit.name}" %>
+                <%= link_to "Details", user_donation_path(@user, donation) %>
+            </p>
+        <% end %>
+    <% end %>
+</p>
+<p>
+    What would you like to do?<br>
+    <%= link_to "Visit the Zoo", exhibits_path %><br>
+    <%= 
+    
+</p>
