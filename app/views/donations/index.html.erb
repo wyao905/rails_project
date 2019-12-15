@@ -1,0 +1,10 @@
+<% if @user.donations.size == 0 %>
+        <%= "You have made no donations." %>
+<% else %>
+    <% @user.donations.each do |donation| %>
+        <p>
+            <%= "$#{donation.amount} made to #{donation.exhibit.name}" %>
+            <%= link_to "Details", user_donation_path(@user, donation) %>
+        </p>
+    <% end %>
+<% end %>

@@ -2,27 +2,21 @@
 <p>Your remaining balance: $<%= @user.balance %><br></p>
 <p>
     <h3>Your Donations</h3>
-    <% if @user.donations.size == 0 %>
-        <%= "You have made no donations." %>
-    <% else %>
-        <% @user.donations.each do |donation| %>
-            <p>
-                <%= "$#{donation.amount} made to #{donation.exhibit.name}" %>
-                <%= link_to "Details", user_donation_path(@user, donation) %>
-            </p>
-        <% end %>
-    <% end %>
+    
     <p>Donation Status: <%= @user.donation_status %></p>
 </p>
-<p><%= link_to "Visit the Zoo", exhibits_path %></p>
 <p>
-    <%= form_for Donation.new, url: user_donations_path(@user), method: "POST" do |f| %>
-        Make a donation:<br>
-        <%= f.text_field :amount %><br><br>
-        Add a message:<br>
-        <%= f.text_area :message %><br>
-        Select an exhibit:<br>
-        <%= f.collection_select :exhibit_id, Exhibit.all, :id, :name %><br><br>
-        <%= f.submit %>
+    <h3>Make a Donation</h3>
+    <%= form_for @user, url: user_donations_path(@user), method: "POST" do |f| %>
+        <%= f.fields_for @user.donations.build do |donation_builder| %>
+            Amount:<br>
+            <%= donation_builder.text_field :amount %><br><br>
+            Add a message:<br>
+            <%= donation_builder.text_area :message %><br>
+            Select an exhibit:<br>
+            <%= donation_builder.collection_select :exhibit_id, Exhibit.all, :id, :name %><br><br>
+        <% end %>
+        <%= f.submit "Donate" %>
     <% end %>
 </p>
+<h3><%= link_to "Visit the Zoo", exhibits_path %></h3>

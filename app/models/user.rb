@@ -6,6 +6,11 @@ class User < ApplicationRecord
     has_many :exhibits, through: :donations
     has_many :animals, through: :actions
 
+    accepts_nested_attributes_for :donations
+
+    def donations_attributes=(donation_attributes)
+    end
+
     def donation_status
         if self.zookeeper
             "Zookeepers do not have access to donation functions and benefits."
