@@ -16,7 +16,7 @@
 </p>
 <p><%= link_to "Visit the Zoo", exhibits_path %></p>
 <p>
-    <%= form_for Donation.new, url: new_user_donation_path(@user) do |f| %>
+    <%= form_for Donation.new, url: user_donations_path(@user), method: "POST" do |f| %>
         Make a donation:<br>
         <%= f.text_field :amount %><br><br>
         Add a message:<br>
