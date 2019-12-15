@@ -1,14 +1,12 @@
 <h1>Welcome <%= @user.username %>!</h1>
 <p>Your remaining balance: $<%= @user.balance %><br></p>
 <p>
-    <h3>Your Donations</h3>
-    
-    <p>Donation Status: <%= @user.donation_status %></p>
+    <%= link_to "Your Donations", user_donations_path(@user) %>
 </p>
 <p>
     <h3>Make a Donation</h3>
     <%= form_for @user, url: user_donations_path(@user), method: "POST" do |f| %>
-        <%= f.fields_for @user.donations.build do |donation_builder| %>
+        <%= f.fields_for :donations do |donation_builder| %>
             Amount:<br>
             <%= donation_builder.text_field :amount %><br><br>
             Add a message:<br>
