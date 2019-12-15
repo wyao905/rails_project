@@ -12,10 +12,17 @@
             </p>
         <% end %>
     <% end %>
+    <p>Donation Status: <%= @user.donation_status %></p>
 </p>
+<p><%= link_to "Visit the Zoo", exhibits_path %></p>
 <p>
-    What would you like to do?<br>
-    <%= link_to "Visit the Zoo", exhibits_path %><br>
-    <%= 
-    
+    <%= form_for Donation.new, url: new_user_donation_path(@user) do |f| %>
+        Make a donation:<br>
+        <%= f.text_field :amount %><br><br>
+        Add a message:<br>
+        <%= f.text_area :message %><br>
+        Select an exhibit:<br>
+        <%= f.collection_select :exhibit_id, Exhibit.all, :id, :name %><br><br>
+        <%= f.submit %>
+    <% end %>
 </p>
