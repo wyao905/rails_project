@@ -1,5 +1,6 @@
 class DonationsController < ApplicationController
     def index
+        @user = current_user
     end
 
     def new
@@ -12,7 +13,7 @@ class DonationsController < ApplicationController
             new_fund = donation.exhibit.funds + donation.amount
             current_user.update(balance: new_balance)
             donation.exhibit.update(funds: new_fund)
-            binding.pry
+
             redirect_to user_path(current_user)
         else
             render "users/show"

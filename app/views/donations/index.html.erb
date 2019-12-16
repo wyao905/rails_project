@@ -1,12 +1,17 @@
-<% if @user.donations.size == 0 %>
-        <%= "You have made no donations." %>
-<% else %>
-    <% @user.donations.each do |donation| %>
-        <p>
-            <%= "$#{donation.amount} made to #{donation.exhibit.name}" %>
-            <%= link_to "Details", user_donation_path(@user, donation) %>
-        </p>
-    <% end %>
-<% end %>
+<h3>Donations</h3>
 
 <p>Donation Status: <%= @user.donation_status %></p>
+
+<p>
+    <% if @user.donations.size == 0 %>
+            <%= "You have made no donations." %>
+    <% else %>
+        <% @user.donations.each do |donation| %>
+            <p>
+                <%= "$#{donation.amount} made to #{donation.exhibit.name}" %><br>
+                <%= donation.message %><br>
+                <%= link_to "Details", user_donation_path(@user, donation) %>
+            </p>
+        <% end %>
+    <% end %>
+</p>
