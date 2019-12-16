@@ -1,0 +1,11 @@
+<%= form_for @user, url: user_donations_path(@user), method: "POST" do |f| %>
+    <%= f.fields_for :donations do |donation_builder| %>
+        Amount:<br>
+        <%= donation_builder.text_field :amount %><br><br>
+        Add a message:<br>
+        <%= donation_builder.text_area :message %><br>
+        Select an exhibit:<br>
+        <%= donation_builder.collection_select :exhibit_id, Exhibit.all, :id, :name %><br><br>
+    <% end %>
+    <%= f.submit "Donate" %>
+<% end %>

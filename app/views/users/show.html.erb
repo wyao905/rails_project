@@ -5,15 +5,13 @@
 </p>
 <p>
     <h3>Make a Donation</h3>
-    <%= form_for @user, url: user_donations_path(@user), method: "POST" do |f| %>
-        <%= f.fields_for :donations do |donation_builder| %>
-            Amount:<br>
-            <%= donation_builder.text_field :amount %><br><br>
-            Add a message:<br>
-            <%= donation_builder.text_area :message %><br>
-            Select an exhibit:<br>
-            <%= donation_builder.collection_select :exhibit_id, Exhibit.all, :id, :name %><br><br>
-        <% end %>
+    <%= form_for Donation.new, url: user_donations_path(@user), method: "POST" do |f| %>
+        Amount:<br>
+        <%= f.text_field :amount %><br><br>
+        Add a message:<br>
+        <%= f.text_area :message %><br>
+        Select an exhibit:<br>
+        <%= f.collection_select :exhibit_id, Exhibit.all, :id, :name %><br><br>
         <%= f.submit "Donate" %>
     <% end %>
 </p>
