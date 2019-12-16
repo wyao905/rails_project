@@ -1,0 +1,8 @@
+<h1>Welcome to the Virtual Zoo!</h1>
+<h3>Select an exhibit to see the animals!</h3>
+
+<% @exhibits.each do |exhibit| %>
+    <p>
+        <%= link_to "#{exhibit.name}", exhibit_path(exhibit) %>
+    </p>
+<% end %>

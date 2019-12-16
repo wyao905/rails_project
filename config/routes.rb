@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :donations, only: [:index, :create, :new, :edit, :show]
+    resources :exhibits, only: [:show]
 
     get '/claim', to: 'exhibits#claim'
   end
