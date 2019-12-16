@@ -10,7 +10,7 @@
             <p>
                 <%= "$#{donation.amount} made to #{donation.exhibit.name}" %><br>
                 <%= donation.message %><br>
-                <%= link_to "Details", user_donation_path(@user, donation) %>
+                <%= link_to "Edit Message", edit_user_donation_path(@user, donation) %>
             </p>
         <% end %>
     <% end %>

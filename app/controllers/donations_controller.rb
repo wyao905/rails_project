@@ -21,12 +21,14 @@ class DonationsController < ApplicationController
     end
 
     def edit
+        @donation = Donation.find(params[:id])
     end
 
     def update
-    end
-
-    def destroy
+        # if valid do below, else render
+        donation = Donation.find(params[:id])
+        donation.update(message: params[:donation][:message])
+        redirect_to user_donations_path(current_user)
     end
 
     private
