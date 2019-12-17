@@ -34,17 +34,11 @@ class Animal < ApplicationRecord
     end
 
     def how_healthy
-        case self.health
-        when 5
-            "#{self.name} looks as fit as ever."
-        when 4
-            "#{self.name} seems to be in good shape."
-        when 3
-            "#{self.name} looks average."
-        when 2
-            "#{self.name} looks uncomfortable."
-        else
-            "#{self.name} looks very sick."
-        end
+        # if self.health
+        # when 
+        #     "#{self.name} looks as fit as ever."
+        # else
+        #     "#{self.name} looks like it's sick."
+        # end
     end
 end
