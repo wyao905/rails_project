@@ -11,6 +11,7 @@ class ExhibitsController < ApplicationController
 
     def show
         @exhibit = Exhibit.find(params[:id])
+        @user = current_user
     end
 
     def edit
@@ -23,5 +24,15 @@ class ExhibitsController < ApplicationController
     end
 
     def claim
+    end
+
+    private
+
+    def user_params(*args)
+        params.require(:user).permit(*args)
+    end
+
+    def current_user
+        User.find(session[:user_id])
     end
 end

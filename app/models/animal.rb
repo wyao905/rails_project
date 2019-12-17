@@ -4,7 +4,7 @@ class Animal < ApplicationRecord
     has_many :users, through: :actions
 
     def mood
-        score = self.hunger
+        score = self.hunger.to_i
         if self.sick
             score -= 3
         else
@@ -33,16 +33,25 @@ class Animal < ApplicationRecord
 
     def how_hungry
         case self.hunger
-        when 2
+        when "2"
             "#{self.name} looks like it just had a large meal."
-        when 1
+        when "1"
             "#{self.name} does not seem hungry."
-        when 0
+        when "0"
             "#{self.name} looks well off."
-        when -1
+        when "-1"
             "#{self.name} seems slightly peckish."
         else
             "#{self.name} looks like it's starving."
+        end
+    end
+
+    def health
+        if !self.sick
+            num = rand(1..100)
+            if num <= 3
+                self.sick = true
+            end
         end
     end
 end
