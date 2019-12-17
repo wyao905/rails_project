@@ -1,1 +1,12 @@
 <h1><%= @exhibit.name %></h1>
+<h3>Looking in, you can see the following animals.</h3>
+
+<% @exhibit.animals.each do |animal| %>
+    <p>
+        <%= animal.name %><br>
+        Species: <%= @animal.species %><br>
+        <%= @animal.mood %><br>
+        <%= @animal.how_hungry %><br>
+        <%= @animal.how_healthy %>
+    </p>
+<% end %>
