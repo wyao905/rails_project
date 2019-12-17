@@ -4,9 +4,9 @@
 <% @exhibit.animals.each do |animal| %>
     <p>
         <%= animal.name %><br>
-        Species: <%= @animal.species %><br>
-        <%= @animal.mood %><br>
-        <%= @animal.how_hungry %><br>
-        <%= @animal.how_healthy %>
+        Species: <%= animal.species %><br>
+        Mood: <%= animal.mood %><br>
+        Hunger: <%= animal.how_hungry %><br>
+        Health: <%= animal.how_healthy %>
     </p>
 <% end %>
