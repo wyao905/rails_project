@@ -4,8 +4,21 @@ class Animal < ApplicationRecord
     has_many :users, through: :actions
 
     def mood
-        case (self.hunger + self.health)
-        when 3..4
+        score = self.hunger
+        if self.sick
+            score -= 3
+        else
+            score += 1
+        end
+
+        if score < -3
+            score = -3
+        elsif score > 3
+            score = 3
+        end
+        
+        case score
+        when 3
             "#{self.name} seems to be enjoying life."
         when 1..2
             "#{self.name} looks quite pleased."
@@ -20,25 +33,16 @@ class Animal < ApplicationRecord
 
     def how_hungry
         case self.hunger
-        when 5
-            "#{self.name} looks like it just had a large meal."
-        when 4
-            "#{self.name} does not seem hungry."
-        when 3
-            "#{self.name} looks well off."
         when 2
+            "#{self.name} looks like it just had a large meal."
+        when 1
+            "#{self.name} does not seem hungry."
+        when 0
+            "#{self.name} looks well off."
+        when -1
             "#{self.name} seems slightly peckish."
         else
             "#{self.name} looks like it's starving."
         end
-    end
-
-    def how_healthy
-        # if self.health
-        # when 
-        #     "#{self.name} looks as fit as ever."
-        # else
-        #     "#{self.name} looks like it's sick."
-        # end
     end
 end
