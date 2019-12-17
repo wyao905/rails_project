@@ -4,14 +4,14 @@ class Animal < ApplicationRecord
     has_many :users, through: :actions
 
     def mood
-        case self.happiness
-        when 5
+        case (self.hunger + self.health)
+        when 3..4
             "#{self.name} seems to be enjoying life."
-        when 4
+        when 1..2
             "#{self.name} looks quite pleased."
-        when 3
+        when 0
             "#{self.name} seems unperturbed."
-        when 2
+        when -2..-1
             "#{self.name} seems slightly grumpy."
         else
             "#{self.name} does not look happy at all."
