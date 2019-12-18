@@ -27,7 +27,7 @@ class DonationsController < ApplicationController
     def update
         # if valid do below, else render
         donation = Donation.find(params[:id])
-        donation.update(message: params[:donation][:message])
+        donation.update(donation_params(:message))
         redirect_to user_donations_path(current_user)
     end
 

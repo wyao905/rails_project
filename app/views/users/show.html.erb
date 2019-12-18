@@ -1,10 +1,11 @@
 <h1>Welcome <%= @user.username %>!</h1>
+
+<h3><%= link_to "Visit the Zoo", exhibits_path %></h3>
+<p><%= link_to "Your Donations", user_donations_path(@user) %></p>
+    
+<h3>Make a Donation</h3>
 <p>Your remaining balance: $<%= @user.balance %><br></p>
 <p>
-    <%= link_to "Your Donations", user_donations_path(@user) %>
-</p>
-<p>
-    <h3>Make a Donation</h3>
     <%= form_for Donation.new, url: user_donations_path(@user), method: "POST" do |f| %>
         Amount:<br>
         <%= f.text_field :amount %><br><br>
@@ -15,4 +16,3 @@
         <%= f.submit "Donate" %>
     <% end %>
 </p>
-<h3><%= link_to "Visit the Zoo", exhibits_path %></h3>

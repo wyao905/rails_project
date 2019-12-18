@@ -1,6 +1,10 @@
-<h3>Donations</h3>
+<h1>Donations</h1>
 
-<p>Donation Status: <%= @user.donation_status %></p>
+<h3>Donation Status: <%= @user.donation_status %></h3>
+
+<% if @user.donation_status == "Platinum" %>
+    <p><%= link_to "Become Zookeeper", zookeeper_users_path, method: :post %></p>
+<% end %>
 
 <p>
     <% if @user.donations.size == 0 %>

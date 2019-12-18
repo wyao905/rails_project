@@ -7,9 +7,7 @@ class User < ApplicationRecord
     has_many :animals, through: :actions
 
     def donation_status
-        if self.zookeeper
-            "Zookeepers do not have access to donation functions and benefits."
-        elsif self.donations.size == 0
+        if self.donations.size == 0
             "You have made no donations."
         else
             sum = 0
