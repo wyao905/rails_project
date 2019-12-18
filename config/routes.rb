@@ -16,4 +16,12 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
   post '/sessions', to: 'sessions#create'
+
+  namespace :zookeeper do
+    resources :users do
+      resources :exhibits
+  
+      get '/claim', to: 'exhibits#claim'
+    end
+  end
 end

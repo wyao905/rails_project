@@ -13,7 +13,11 @@ class SessionsController < ApplicationController
                 render :new
             else
                 session[:user_id] = user.id
-                redirect_to "/users/#{user.id}"
+                if user.zookeeper
+                    redirect_to "/zookeeper/users/#{user.id}"
+                else
+                    redirect_to "/users/#{user.id}"
+                end
             end
         end
     end
