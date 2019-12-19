@@ -4,6 +4,16 @@ class Zookeeper::ExhibitsController < ApplicationController
         @user = current_user
     end
 
+    def new
+        @exhibit = Exhibit.new
+        @species = Animal.species
+        @user = current_user
+    end
+
+    def create
+        binding.pry
+    end
+
     def show
     end
 

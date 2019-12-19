@@ -3,12 +3,6 @@ class ExhibitsController < ApplicationController
         @exhibits = Exhibit.all
     end
 
-    def new
-    end
-
-    def create
-    end
-
     def show
         @exhibit = Exhibit.find(params[:id])
         @user = current_user

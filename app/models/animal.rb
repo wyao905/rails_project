@@ -54,4 +54,12 @@ class Animal < ApplicationRecord
             end
         end
     end
+
+    def self.species
+        list_species = []
+        self.all.each do |a|
+            list_species << a.species if !list_species.include?(a.species)
+        end
+        list_species
+    end
 end
