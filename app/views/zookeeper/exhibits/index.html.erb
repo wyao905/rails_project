@@ -1,0 +1,9 @@
+<h1>List of Exhibits</h1>
+
+<
+
+<% @exhibits.each do |exhibit| %>
+    <p>
+        <%= link_to "#{exhibit.name}", zookeeper_user_exhibit_path(@user, exhibit) %>
+    </p>
+<% end %>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get '/claim', to: 'exhibits#claim'
   end
   
-  resources :animals, :exhibits
+  resources :exhibits
   resources :donations, only: [:update]
 
   get '/', to: 'welcome#home'
@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   
       get '/claim', to: 'exhibits#claim'
     end
+    
+    resources :animals
   end
 end
