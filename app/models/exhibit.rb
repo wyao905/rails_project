@@ -5,7 +5,9 @@ class Exhibit < ApplicationRecord
 
     def animals_attributes=(animal_attributes)
         animal_attributes.values.each do |animal_attribute|
-            animal = Animal.find_or_create_by(animal_attribute)
+            animal = Animal.create(animal_attribute)
+            animal.update(hunger: rand(-2..2))
+            animal.update(sick: animal.health)
             self.animals << animal
         end
     end

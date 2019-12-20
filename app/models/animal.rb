@@ -48,10 +48,14 @@ class Animal < ApplicationRecord
 
     def health
         if !self.sick
-            num = rand(1..100)
-            if num <= 3
+            num = rand(1..10)
+            if num <= 2
                 self.sick = true
+            else
+                false
             end
+        else
+            false
         end
     end
 
