@@ -1,7 +1,7 @@
 class Zookeeper::ActionsController < ApplicationController
     def create
-        current_user.action.build(action_params(:action_type, :animal_id))
-        binding.pry
+        action = current_user.actions.build(action_params(:action_type, :animal_id))
+        action.save
         animal = Animal.find(params[:animal_id])
         if params[:action_type] == "Feed"
             animal.update(hunger: animal.hunger.to_i + 1) 
