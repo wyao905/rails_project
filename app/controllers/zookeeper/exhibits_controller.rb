@@ -21,6 +21,8 @@ class Zookeeper::ExhibitsController < ApplicationController
     end
 
     def show
+        @exhibit = Exhibit.find(params[:id])
+        @user = current_user
     end
 
     private

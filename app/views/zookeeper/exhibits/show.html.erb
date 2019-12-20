@@ -1,0 +1,17 @@
+<h1><%= @exhibit.name %></h1>
+<p>Current Funds: $<%= @exhibit.funds %></p>
+<h3>The following animals are in the exhibit.</h3>
+
+<% @exhibit.animals.each do |animal| %>
+    <p>
+        <%= animal.name %><br>
+        Species: <%= animal.species %><br>
+        <%= animal.mood %><br>
+        <%= animal.how_hungry %><br>
+        <% if animal.sick %>
+            <%= animal.name %> appears to be sick.
+        <% else %>
+            <%= animal.name %> seems healthy.
+        <% end %>
+    </p>
+<% end %>
