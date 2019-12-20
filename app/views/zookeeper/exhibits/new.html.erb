@@ -5,9 +5,9 @@
     
     <h4>Animal Info</h4>
     <%= f.fields_for :animals do |animal_builder| %>
-        Name:<br>
+        <%= animal_builder.label "Name:" %><br>
         <%= animal_builder.text_field :name %><br><br>
-        Species:<br>
+        <%= animal_builder.label "Species:" %><br>
         <%= animal_builder.text_field :species %><br><br>
     <% end %>
     <%= f.submit %>

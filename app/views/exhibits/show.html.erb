@@ -6,8 +6,8 @@
         <%= animal.name %><br>
         Species: <%= animal.species %><br>
         <%= animal.mood %><br>
-        <%= animal.how_hungry %><br>
-        <% if animal.sick %>
+        Hunger: <%= animal.how_hungry %><br>
+        Health: <% if animal.sick %>
             <%= animal.name %> appears to be sick.
         <% else %>
             <%= animal.name %> seems healthy.

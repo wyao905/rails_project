@@ -11,17 +11,18 @@ Rails.application.routes.draw do
   resources :exhibits
   resources :donations, only: [:update]
 
+  namespace :zookeeper do
+    resources :users do
+      resources :animals, only: [:index, :create, :edit, :update, :show, :destroy] do
+        resources :actions, only: [:create]
+      end
+      resources :exhibits
+    end
+  end
+
   get '/', to: 'welcome#home'
 
   get '/signin', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
   post '/sessions', to: 'sessions#create'
-
-  namespace :zookeeper do
-    resources :users do
-      resources :exhibits
-    end
-    
-    resources :animals
-  end
 end
