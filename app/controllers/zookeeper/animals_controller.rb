@@ -1,6 +1,7 @@
 class Zookeeper::AnimalsController < ApplicationController
     def index
-        @animals = Animal.all
+        @animals = Animal.all.sort_by{|a| [a.species, a.name]}
+        @user = current_user
     end
 
     def create
@@ -23,6 +24,10 @@ class Zookeeper::AnimalsController < ApplicationController
             @animal = Animal.new
             render "zookeeper/exhibits/show"
         end
+    end
+
+    def show
+        @animal = Animal.find(params[:id])
     end
 
     private

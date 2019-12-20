@@ -1,3 +1,13 @@
-<% @animals.each do |animal| %>
-    <%= animal.name %>
-<% end %>
+<h1>Animals</h1>
+<% prev_spec = @animals.first.species %>
+<p>
+    <% @animals.each do |animal| %>
+        <% if prev_spec != animal.species %>
+            <br><%= "#{animal.species} - #{animal.name}" %>
+        <% else %>
+            <%= "#{animal.species} - #{animal.name}" %>
+        <% end %>
+        | <%= link_to "View Animal", zookeeper_user_animal_path(@user, animal) %><br>
+        <% prev_spec = animal.species %>
+    <% end %>
+</p>
