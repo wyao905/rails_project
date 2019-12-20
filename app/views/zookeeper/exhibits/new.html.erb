@@ -1,12 +1,14 @@
 <h1>Open New Exhibit</h1>
-<%= form_for @exhibit, url: zookeeper_user_exhibits(@user), method: "POST" do |f| %>
-
+<%= form_for @exhibit, url: zookeeper_user_exhibits_path(@user), method: "POST" do |f| %>
+    Exhibit Name:<br>
+    <%= f.text_field :name %><br><br>
+    
+    <h4>Animal Info</h4>
     <%= f.fields_for :animals do |animal_builder| %>
         Name:<br>
         <%= animal_builder.text_field :name %><br><br>
-        Select existing or new species:<br>
-        <%= animal_builder.collection_select :species, @species, :to_s, :to_s %><br>
-        <%= animal_builder.text_field :species %><br>
+        Species:<br>
+        <%= animal_builder.text_field :species %><br><br>
     <% end %>
-    <%= f.submit "Donate" %>
+    <%= f.submit %>
 <% end %>

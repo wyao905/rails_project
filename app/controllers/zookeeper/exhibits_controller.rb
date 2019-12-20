@@ -8,10 +8,16 @@ class Zookeeper::ExhibitsController < ApplicationController
         @exhibit = Exhibit.new
         @species = Animal.species
         @user = current_user
+        @exhibit.animals.build
     end
 
     def create
-        binding.pry
+        exhibit = Exhibit.create(exhibit_params(:name, animals_attributes: [:name, :species]))
+        if exhibit.save
+            redirect_to zookeeper_user_exhibits_path(current_user)
+        else
+            render :new
+        end
     end
 
     def show

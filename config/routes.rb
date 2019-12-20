@@ -20,8 +20,6 @@ Rails.application.routes.draw do
   namespace :zookeeper do
     resources :users do
       resources :exhibits
-  
-      get '/claim', to: 'exhibits#claim'
     end
     
     resources :animals
