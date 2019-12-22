@@ -28,6 +28,7 @@ class Zookeeper::AnimalsController < ApplicationController
 
     def show
         @animal = Animal.find(params[:id])
+        @user = current_user
     end
 
     private

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   namespace :zookeeper do
     resources :users do
       resources :animals, only: [:index, :create, :edit, :update, :show, :destroy] do
-        resources :actions, only: [:create]
+        resources :actions, only: [:index, :create]
       end
       resources :exhibits
     end

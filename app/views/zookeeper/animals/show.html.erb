@@ -9,3 +9,9 @@
         <%= @animal.name %> seems healthy.
     <% end %>
 </p>
+<p>
+    <%= flash[:message] %><br>
+    <%= link_to "Feed #{@animal.name}", zookeeper_user_animal_actions_path(@user, @animal, action_type: "Feed"), method: "POST" %>
+    | <%= link_to "Give #{@animal.name} Medicine", zookeeper_user_animal_actions_path(@user, @animal, action_type: "Cure"), method: "POST" %>
+    | <%= link_to "View Previous Actions for #{@animal.name}", zookeeper_user_animal_actions_path(@user, @animal) %>
+</p>

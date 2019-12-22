@@ -7,18 +7,7 @@
         <%= animal.name %><br>
         Species: <%= animal.species %><br>
         <%= animal.mood %><br>
-        Hunger: <%= animal.how_hungry %>
-        <% if animal.hunger.to_i < 2 %>
-            | <%= link_to "Feed", zookeeper_user_animal_actions_path(@user, animal, action_type: "Feed"), method: "POST" %><br>
-        <% else %>
-            <br>
-        <% end %>
-        Health: <% if animal.sick %>
-            <%= animal.name %> appears to be sick.
-            | <%= link_to "Cure Animal", zookeeper_user_animal_actions_path(@user, animal, action_type: "Cure"), method: "POST" %>
-        <% else %>
-            <%= animal.name %> seems healthy.
-        <% end %>
+        <%= link_to "#{animal.name}'s Details", zookeeper_user_animal_path(@user, animal) %>
     </p>
 <% end %>
 <p>
