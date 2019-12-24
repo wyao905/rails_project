@@ -1,6 +1,6 @@
 class Zookeeper::AnimalsController < ApplicationController
     def index
-        @animals = Animal.all.sort_by{|a| [a.species, a.name]}
+        @exhibits = Exhibit.all.sort_by{|a| [a.name]}
         @user = current_user
     end
 

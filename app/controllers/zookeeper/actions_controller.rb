@@ -1,7 +1,7 @@
 class Zookeeper::ActionsController < ApplicationController
     def index
-        binding.pry
         @animal = Animal.find(params[:animal_id])
+        @actions = Action.all.select{|a| a.animal_id == @animal.id}
     end
 
     def create
