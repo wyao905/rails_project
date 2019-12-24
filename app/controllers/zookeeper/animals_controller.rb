@@ -18,11 +18,13 @@ class Zookeeper::AnimalsController < ApplicationController
                 redirect_to zookeeper_user_exhibit_path(@user, @exhibit)
             else
                 @animal = Animal.new
-                render "zookeeper/exhibits/show"
+                flash[:message] = "Please enter valid name and species."
+                render "zookeeper/exhibits/edit"
             end
         else
             @animal = Animal.new
-            render "zookeeper/exhibits/show"
+            flash[:message] = "Not enough funds."
+            render "zookeeper/exhibits/edit"
         end
     end
 
@@ -32,8 +34,11 @@ class Zookeeper::AnimalsController < ApplicationController
     end
 
     def destroy
-        binding.pry
-        animal = Animal.find
+        animal = Animal.find(params[:id])
+        animal.actions.each do |action|
+            action.delete
+        end
+        animal.delete
     end
 
     private

@@ -1,17 +1,33 @@
 <h1>Edit <%= @exhibit.name %></h1>
 <p>
-    <%= form_for @exhibit do |f| %>
+    <%= form_for @exhibit, url: zookeeper_user_exhibit_path(@user, @exhibit), method: "PATCH" do |f| %>
         Edit Exhibit Name:<br>
         <%= f. text_field :name %>
         <%= f.submit %>
-    <% end %>        
+    <% end %>    
 </p>
-
+<h3>Current Funds: $<%= @exhibit.funds %></h3>
 <h3>Current Animals</h3>
-<% @exhibit.animals.each do |animal| %>
-    <p>
-        <%= animal.name %><br>
-        Species: <%= animal.species %><br>
-        <%= link_to "Release #{animal.name}", zookeeper_user_animal_path(@user, animal), method: "DELETE" %>
-    </p>
+<% if @exhibit.animals.empty? %>
+    <p>There are currently no animals in this exhibit.</p>
+<% else %>
+    <% @exhibit.animals.each do |animal| %>
+        <p>
+            <%= animal.name %><br>
+            Species: <%= animal.species %><br>
+            <%= link_to "Release #{animal.name}", zookeeper_user_animal_path(@user, animal), method: "DELETE" %>
+        </p>
+    <% end %>
 <% end %>
+<p>
+    <h3>Add new animal to the exhibit (costs $200).</h3>
+    <%= form_for @animal, url: zookeeper_user_animals_path(@user), method: "POST" do |f| %>
+        <%= f.hidden_field :exhibit_id, {:value => @exhibit.id} %>
+        <%= f.label "Name" %><br>
+        <%= f.text_field :name %><br><br>
+        <%= f.label "Species" %><br>
+        <%= f.text_field :species %><br><br>
+        <%= f.submit "Add New Animal" %>
+    <% end %>
+</p>
+<p><%= flash[:message] %></p>

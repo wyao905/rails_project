@@ -5,21 +5,15 @@
 </p>
 <h3>The following animals are in the exhibit.</h3>
 
-<% @exhibit.animals.each do |animal| %>
-    <p>
-        <%= animal.name %><br>
-        Species: <%= animal.species %><br>
-        <%= animal.mood %><br>
-        <%= link_to "#{animal.name}'s Details", zookeeper_user_animal_path(@user, animal) %>
-    </p>
-<% end %>
-<p>
-    Add new animal to the exhibit (costs $200).<br>
-    <%= form_for @animal, url: zookeeper_user_animals_path(@user), method: "POST" do |f| %>
-        <%= f.hidden_field :species, {:value => @exhibit.animals.first.species} %>
-        <%= f.hidden_field :exhibit_id, {:value => @exhibit.id} %>
-        <%= f.label "Name" %><br>
-        <%= f.text_field :name %><br><br>
-        <%= f.submit "Add New Animal" %>
+<% if @exhibit.animals.empty? %>
+    <p>There are no animals currently in this exhibit.</p>
+<% else %>
+    <% @exhibit.animals.each do |animal| %>
+        <p>
+            <%= animal.name %><br>
+            Species: <%= animal.species %><br>
+            <%= animal.mood %><br>
+            <%= link_to "#{animal.name}'s Details", zookeeper_user_animal_path(@user, animal) %>
+        </p>
     <% end %>
-</p>
+<% end %>

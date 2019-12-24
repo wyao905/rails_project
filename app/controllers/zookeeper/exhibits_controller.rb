@@ -23,16 +23,18 @@ class Zookeeper::ExhibitsController < ApplicationController
     def show
         @exhibit = Exhibit.find(params[:id])
         @user = current_user
-        @animal = Animal.new
     end
 
     def edit
         @exhibit = Exhibit.find(params[:id])
         @user = current_user
+        @animal = Animal.new
     end
 
     def update
-        binding.pry
+        exhibit = Exhibit.find(params[:id])
+        exhibit.update(exhibit_params(:name))
+        redirect_to zookeeper_user_exhibit_path(current_user, exhibit)
     end
 
     private

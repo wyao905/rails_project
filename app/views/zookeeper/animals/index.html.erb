@@ -2,9 +2,13 @@
 <p>
     <% @exhibits.each do |exhibit| %>
         <h3><%= exhibit.name %> Exhibit</h3>
-        <% exhibit.animals.each do |animal| %>
-            <%= "#{animal.species} - #{animal.name}" %>
-            | <%= link_to "View #{animal.name}", zookeeper_user_animal_path(@user, animal) %><br>
+        <% if exhibit.animals.empty? %>
+            <p>There are no animals currently in this exhibit.</p>
+        <% else %>
+            <% exhibit.animals.each do |animal| %>
+                <%= "#{animal.species} - #{animal.name}" %>
+                | <%= link_to "View #{animal.name}", zookeeper_user_animal_path(@user, animal) %><br>
+            <% end %>
         <% end %>
     <% end %>
 </p>
