@@ -1,5 +1,8 @@
 <h1><%= @exhibit.name %></h1>
-<p>Current Funds: $<%= @exhibit.funds %></p>
+<p>
+    Current Funds: $<%= @exhibit.funds %><br>
+    <%= link_to "Edit Exhibit", edit_zookeeper_user_exhibit_path(@user, @exhibit) %>
+</p>
 <h3>The following animals are in the exhibit.</h3>
 
 <% @exhibit.animals.each do |animal| %>

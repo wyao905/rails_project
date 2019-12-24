@@ -31,6 +31,11 @@ class Zookeeper::AnimalsController < ApplicationController
         @user = current_user
     end
 
+    def destroy
+        binding.pry
+        animal = Animal.find
+    end
+
     private
 
     def animal_params(*args)

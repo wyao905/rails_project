@@ -26,6 +26,15 @@ class Zookeeper::ExhibitsController < ApplicationController
         @animal = Animal.new
     end
 
+    def edit
+        @exhibit = Exhibit.find(params[:id])
+        @user = current_user
+    end
+
+    def update
+        binding.pry
+    end
+
     private
 
     def exhibit_params(*args)

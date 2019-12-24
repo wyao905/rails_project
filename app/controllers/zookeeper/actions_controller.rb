@@ -6,16 +6,17 @@ class Zookeeper::ActionsController < ApplicationController
 
     def create
         action = current_user.actions.build(action_params(:action_type, :animal_id))
-        action.save
         animal = Animal.find(params[:animal_id])
         if params[:action_type] == "Feed"
             if animal.hunger == "2"
                 flash[:message] = "#{animal.name} is too full to eat anymore."
             else
+                action.save
                 animal.update(hunger: animal.hunger.to_i + 1)
             end
         else
             if animal.sick
+                action.save
                 animal.update(sick: false)
             else
                 flash[:message] = "#{animal.name} does not appear to be sick."

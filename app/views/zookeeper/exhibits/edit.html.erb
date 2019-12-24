@@ -1,0 +1,17 @@
+<h1>Edit <%= @exhibit.name %></h1>
+<p>
+    <%= form_for @exhibit do |f| %>
+        Edit Exhibit Name:<br>
+        <%= f. text_field :name %>
+        <%= f.submit %>
+    <% end %>        
+</p>
+
+<h3>Current Animals</h3>
+<% @exhibit.animals.each do |animal| %>
+    <p>
+        <%= animal.name %><br>
+        Species: <%= animal.species %><br>
+        <%= link_to "Release #{animal.name}", zookeeper_user_animal_path(@user, animal), method: "DELETE" %>
+    </p>
+<% end %>
