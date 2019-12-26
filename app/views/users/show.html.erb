@@ -1,7 +1,7 @@
 <h1>Welcome <%= @user.username %>!</h1>
-
+<p><%= link_to "Edit Profile", edit_user_path(@user) %></p>
 <h3><%= link_to "Visit the Zoo", exhibits_path %></h3>
-<p><%= link_to "Your Donations", user_donations_path(@user) %></p>
+
     
 <h3>Make a Donation</h3>
 <p>Your remaining balance: $<%= @user.balance %><br></p>
@@ -15,4 +15,5 @@
         <%= f.collection_select :exhibit_id, Exhibit.all, :id, :name %><br><br>
         <%= f.submit "Donate" %>
     <% end %>
+    <h4><%= link_to "View Your Donations", user_donations_path(@user) %></h4>
 </p>

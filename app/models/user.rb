@@ -13,13 +13,13 @@ class User < ApplicationRecord
             sum = 0
             self.donations.each{|donation| sum += donation.amount}
             if sum >= 100000
-                "Platinum"      # user can claim/create an exhibit and appoint zookeepers
+                "Platinum"
             elsif sum >= 10000
-                "Gold"          # user can adopt up to 5 animals
+                "Gold"
             elsif sum >= 1000
-                "Silver"        # user can adopt an animal (name, feed, see list of actions for animal)
+                "Silver"
             else
-                "Bronze"        # everyone starts off at bronze
+                "Bronze"
             end
         end
     end

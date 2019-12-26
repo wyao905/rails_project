@@ -24,9 +24,13 @@ class UsersController < ApplicationController
     end
 
     def edit
+        @user = current_user
     end
 
     def update
+        user = User.find(params[:id])
+        user.update(username: params[:user][:username], balance: user.balance.to_i + params[:user][:balance].to_i)
+        redirect_to user_path(user)
     end
 
     private

@@ -1,0 +1,9 @@
+<h1><%= @user.username %></h1>
+<p>
+    <%= form_for @user do |f| %>
+        Change Username: <%= f.text_field :username, value: nil %><br><br>
+        Current Balance: <%= @user.balance %><br>
+        Add to Balance: <%= f.text_field :balance, value: nil %><br>
+        <%= f.submit %>
+    <% end %>
+</p>
