@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_20_042351) do
+ActiveRecord::Schema.define(version: 2019_12_25_004054) do
 
   create_table "actions", force: :cascade do |t|
     t.string "action_type"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2019_12_20_042351) do
   create_table "exhibits", force: :cascade do |t|
     t.string "name"
     t.integer "funds", default: 0
-    t.boolean "claimed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

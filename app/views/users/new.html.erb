@@ -1,5 +1,5 @@
 <h3>Create a new account</h3>
-<%= form_for @user do |f| %>
+<%= form_for User.new do |f| %>    
     <%= f.label 'Username: ' %>
     <%= f.text_field :username %><br>
     <%= f.label 'Starting Balance: ' %>

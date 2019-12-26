@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
 
     def new
-        @user = User.new
+        render layout: false
     end
 
     def create
@@ -33,9 +33,5 @@ class UsersController < ApplicationController
 
     def user_params(*args)
         params.require(:user).permit(*args)
-    end
-
-    def current_user
-        User.find(session[:user_id])
     end
 end

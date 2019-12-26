@@ -14,12 +14,19 @@ class Zookeeper::ActionsController < ApplicationController
                 action.save
                 animal.update(hunger: animal.hunger.to_i + 1)
             end
-        else
+        elsif params[:action_type] == "Cure"
             if animal.sick
                 action.save
                 animal.update(sick: false)
             else
                 flash[:message] = "#{animal.name} does not appear to be sick."
+            end
+        else
+            if animal.adopted
+                flash[:message] = "#{animal.name} has already been adopted."
+            else
+                action.save
+                binding.pry
             end
         end
         redirect_to zookeeper_user_animal_path(current_user, animal)
@@ -29,9 +36,5 @@ class Zookeeper::ActionsController < ApplicationController
 
     def action_params(*args)
         params.permit(*args)
-    end
-
-    def current_user
-        User.find(session[:user_id])
     end
 end

@@ -33,21 +33,25 @@ class Zookeeper::AnimalsController < ApplicationController
         @user = current_user
     end
 
+    def edit
+        @animal = Animal.find(params[:id])
+    end
+
+    def update
+    end
+
     def destroy
         animal = Animal.find(params[:id])
         animal.actions.each do |action|
             action.delete
         end
         animal.delete
+        redirect_to zookeeper_user_exhibit_path(current_user, animal.exhibit)
     end
 
     private
 
     def animal_params(*args)
         params.require(:animal).permit(*args)
-    end
-
-    def current_user
-        User.find(session[:user_id])
     end
 end

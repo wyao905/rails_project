@@ -36,8 +36,4 @@ class DonationsController < ApplicationController
     def donation_params(*args)
         params.require(:donation).permit(*args)
     end
-
-    def current_user
-        User.find(session[:user_id])
-    end
 end

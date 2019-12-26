@@ -15,6 +15,7 @@
         <p>
             <%= animal.name %><br>
             Species: <%= animal.species %><br>
+            <%= form_for
             <%= link_to "Release #{animal.name}", zookeeper_user_animal_path(@user, animal), method: "DELETE" %>
         </p>
     <% end %>

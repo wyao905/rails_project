@@ -12,4 +12,20 @@
   <body>
     <%= yield %>
   </body>
+
+  <footer>
+    <br>
+    <p>
+      <% if current_user.zookeeper %>
+        <%= link_to "Home", zookeeper_user_path(current_user) %>
+        | <%= link_to "Exhibits", zookeeper_user_exhibits_path(current_user) %>
+        | <%= link_to "Animals", zookeeper_user_animals_path(current_user) %>
+        | <%= link_to "Logout", logout_path %>
+      <% else %>
+        <%= link_to "Home", user_path(current_user) %>
+        | <%= link_to "View Exhibits", exhibits_path %>
+        | <%= link_to "Logout", logout_path %>
+      <% end %>
+    </p>
+  </footer>
 </html>
