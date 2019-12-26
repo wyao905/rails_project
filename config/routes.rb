@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   
   resources :exhibits
+  resources :animals, only: [:index, :show]
   resources :donations, only: [:update]
 
   namespace :zookeeper do
