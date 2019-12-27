@@ -1,11 +1,15 @@
 <h1>Previous Actions for <%= @animal.name %></h1>
 <p>
-    <ul>
-        <% @actions.each do |action| %>
-            <% if action.action_type == "Feed" %>
-                <li>Last fed on <%= action.created_at.strftime("%b %d, %Y") %> by <%= action.user.username %>.</li>
-            <% else %>
-                <li><%= action.user.username %> gave <%= action.animal.name %> medicine on <%= action.created_at.strftime("%b %d, %Y") %>.</li>
+    <% if @actions.empty? %>
+        <%= @animal.name %> has not been fed or given medicine yet.
+    <% else %>
+        <ul>
+            <% @actions.each do |action| %>
+                <% if action.action_type == "Feed" %>
+                    <li>Last fed on <%= action.created_at.strftime("%b %d, %Y") %> by <%= action.user.username %>.</li>
+                <% else %>
+                    <li><%= action.user.username %> gave <%= action.animal.name %> medicine on <%= action.created_at.strftime("%b %d, %Y") %>.</li>
+                <% end %>
             <% end %>
         <% end %>
     </ul>

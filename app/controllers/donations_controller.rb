@@ -3,9 +3,6 @@ class DonationsController < ApplicationController
         @user = current_user
     end
 
-    def new
-    end
-
     def create
         donation = current_user.donations.build(donation_params(:amount, :message, :exhibit_id))
         if donation.save

@@ -8,18 +8,6 @@ class ExhibitsController < ApplicationController
         @user = current_user
     end
 
-    def edit
-    end
-
-    def update
-    end
-
-    def delete
-    end
-
-    def claim
-    end
-
     private
 
     def user_params(*args)

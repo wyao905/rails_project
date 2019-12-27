@@ -2,7 +2,7 @@
 <p>
     <%= form_for @exhibit, url: zookeeper_user_exhibit_path(@user, @exhibit), method: "PATCH" do |f| %>
         Edit Exhibit Name:<br>
-        <%= f. text_field :name %>
+        <%= f.text_field :name, value: nil %>
         <%= f.submit %>
     <% end %>    
 </p>
@@ -15,7 +15,6 @@
         <p>
             <%= animal.name %><br>
             Species: <%= animal.species %><br>
-            <%= form_for
             <%= link_to "Release #{animal.name}", zookeeper_user_animal_path(@user, animal), method: "DELETE" %>
         </p>
     <% end %>

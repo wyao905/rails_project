@@ -1,9 +1,4 @@
 class UsersController < ApplicationController
-    helper_method :current_user
-
-    def index
-    end
-
     def show
         @user = current_user
         @user.donations.build

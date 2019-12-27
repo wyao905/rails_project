@@ -33,11 +33,10 @@ class Zookeeper::AnimalsController < ApplicationController
         @user = current_user
     end
 
-    def edit
-        @animal = Animal.find(params[:id])
-    end
-
     def update
+        animal = Animal.find(params[:id])
+        animal.update(animal_params(:name))
+        redirect_to zookeeper_user_animal_path(current_user, animal)
     end
 
     def destroy
