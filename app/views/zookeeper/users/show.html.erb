@@ -1,4 +1,4 @@
 <h1>Welcome <%= @user.username %>!</h1>
-
+<p><%= link_to "Edit Profile", edit_zookeeper_user_path(@user) %></p>
 <h4><%= link_to "View Exhibits", zookeeper_user_exhibits_path(@user) %></h4>
 <h4><%= link_to "View Animals", zookeeper_user_animals_path(@user) %></h4>

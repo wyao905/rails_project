@@ -8,6 +8,16 @@ class Zookeeper::UsersController < ApplicationController
         redirect_to zookeeper_user_path(current_user)
     end
 
+    def edit
+        @user = current_user
+    end
+
+    def update
+        user = User.find(params[:id])
+        user.update(user_params(:username, :password))
+        redirect_to zookeeper_user_path(user)
+    end
+
     private
 
     def user_params(*args)
