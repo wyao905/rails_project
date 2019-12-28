@@ -3,6 +3,8 @@ class Animal < ApplicationRecord
     has_many :actions
     has_many :users, through: :actions
 
+    validates :name, :species, presence: true
+
     def mood
         score = self.hunger.to_i
         if self.sick

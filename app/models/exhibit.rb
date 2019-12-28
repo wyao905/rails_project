@@ -3,6 +3,9 @@ class Exhibit < ApplicationRecord
     has_many :donations
     has_many :users, through: :donations
 
+    validates :name, presence: true
+    validates :funds, numericality: { only_integer: true }
+
     def animals_attributes=(animal_attributes)
         animal_attributes.values.each do |animal_attribute|
             animal = Animal.create(animal_attribute)

@@ -5,6 +5,10 @@ class User < ApplicationRecord
     has_many :actions
     has_many :exhibits, through: :donations
     has_many :animals, through: :actions
+    
+    validates :username, :password_digest, presence: true
+    validates :username, uniqueness: true
+    validates :balance, numericality: { only_integer: true }
 
     def donation_status
         if self.donations.size == 0
