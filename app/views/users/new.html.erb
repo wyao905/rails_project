@@ -1,11 +1,20 @@
 <h3>Create a new account</h3>
-<%= form_for User.new do |f| %>    
-    <%= f.label 'Username: ' %>
+<%= form_for @user do |f| %>    
+    <%= f.label 'Username:' %><br>
     <%= f.text_field :username %><br>
-    <%= f.label 'Starting Balance: ' %>
+    <%= f.label 'Starting Balance:' %><br>
     <%= f.text_field :balance %><br>
-    <%= f.label 'Password: ' %>
-    <%= f.text_field :password %><br>
+    <%= f.label 'Password:' %><br>
+    <%= f.text_field :password %><br><br>
 
     <%= f.submit "Create Account" %>
+<% end %>
+
+<% if @user.errors.any? %>
+    <p>
+        Errors:<br>
+        <% @user.errors.full_messages.each do |msg| %>
+            <%= msg %><br>
+        <% end %>
+    </p>
 <% end %>

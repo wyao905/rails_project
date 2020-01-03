@@ -6,15 +6,16 @@ class UsersController < ApplicationController
 
     def new
         render layout: false
+        @user = User.new
     end
 
     def create
-        user = User.create(user_params(:username, :balance, :password))
-        if user.save
-            session[:user_id] = user.id
-            redirect_to user_path(user)
+        @user = User.create(user_params(:username, :balance, :password))
+        if @user.save
+            session[:user_id] = @user.id
+            redirect_to user_path(@user)
         else
-            render :new
+            render "new", layout: false
         end
     end
 
