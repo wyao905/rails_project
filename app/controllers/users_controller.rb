@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
     def show
+        return head(:forbidden) unless session.include? :user_id
         @user = current_user
         @user.donations.build
     end
 
     def new
-        render layout: false
         @user = User.new
+        render layout: false
     end
 
     def create

@@ -8,7 +8,7 @@ class User < ApplicationRecord
     
     validates :username, :password, :balance, presence: true
     validates :username, uniqueness: true
-    validates :balance, numericality: { only_integer: true }
+    validates :balance, numericality: { only_integer: true, message: "must be in dollars." }
 
     def donation_status
         if self.donations.size == 0
