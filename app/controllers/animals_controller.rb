@@ -1,4 +1,6 @@
 class AnimalsController < ApplicationController
+    before_action :require_login
+    
     def index
         @exhibits = Exhibit.all.sort_by{|a| [a.name]}
     end

@@ -1,10 +1,23 @@
-<h1><%= @user.username %></h1>
+<h1>Edit Profile</h1>
 <p>
     <%= form_for @user do |f| %>
-        Change Username: <%= f.text_field :username, value: nil %><br>
-        Change Password: <%= f.text_field :password, value: nil %><br><br>
+        Change Username:<br>
+        <%= f.text_field :username, value: nil, placeholder: @user.username %><br><br>
+        Change Password:<br>
+        <%= f.text_field :password %><br><br>
+
         Current Balance: <%= @user.balance %><br>
-        Add to Balance: <%= f.text_field :balance, value: nil %><br>
+        Add to Balance:<br>
+        <%= f.text_field :balance, value: nil, placeholder: @user.balance %><br><br>
+
         <%= f.submit %>
     <% end %>
+</p>
+<p>
+    <% if @user.errors.any? %>
+        <% @user.errors.full_messages.each do |msg| %>
+            <%= msg %><br>
+        <% end %>
+    <% end %>
+    <%= flash[:message] %>
 </p>

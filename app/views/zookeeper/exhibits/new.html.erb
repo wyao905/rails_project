@@ -1,7 +1,14 @@
 <h1>Open New Exhibit</h1>
 <%= form_for @exhibit, url: zookeeper_user_exhibits_path(@user), method: "POST" do |f| %>
     Exhibit Name:<br>
-    <%= f.text_field :name %><br><br>
+    <%= f.text_field :name %><br>
+    <p>
+        <% if @exhibit.errors.any? %>
+            <% @exhibit.errors.full_messages.each do |msg| %>
+                <%= msg if msg != "Animals is invalid" %><br>
+            <% end %>
+        <% end %>
+    </p>
     
     <h4>Animal Info</h4>
     <%= f.fields_for :animals do |animal_builder| %>
@@ -12,3 +19,10 @@
     <% end %>
     <%= f.submit %>
 <% end %>
+<p>
+    <% if @exhibit.animals.last.errors.any? %>
+        <% @exhibit.animals.last.errors.full_messages.each do |msg| %>
+            <%= msg %><br>
+        <% end %>
+    <% end %>
+</p>

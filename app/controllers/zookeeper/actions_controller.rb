@@ -1,4 +1,7 @@
 class Zookeeper::ActionsController < ApplicationController
+    before_action :require_login
+    before_action :right_user
+    
     def index
         @animal = Animal.find(params[:animal_id])
         @actions = Action.all.select{|a| a.animal_id == @animal.id}

@@ -1,4 +1,7 @@
 class DonationsController < ApplicationController
+    before_action :require_login
+    before_action :right_user
+
     def index
         @user = current_user
     end
@@ -18,11 +21,14 @@ class DonationsController < ApplicationController
     end
 
     def edit
+        @user = current_user
         @donation = Donation.find(params[:id])
+        if @donation.user != @user
+            return head(:forbidden)
+        end
     end
 
     def update
-        # if valid do below, else render
         donation = Donation.find(params[:id])
         donation.update(donation_params(:message))
         redirect_to user_donations_path(current_user)

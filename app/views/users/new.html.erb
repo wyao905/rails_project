@@ -10,14 +10,14 @@
     <%= f.submit "Create Account" %>
 <% end %>
 
-<% if @user.errors.any? %>
-    <p>
-        Errors:<br>
+<p>
+    <% if @user.errors.any? %>
         <% @user.errors.full_messages.each do |msg| %>
             <%= msg %><br>
         <% end %>
-    </p>
-<% end %>
+    <% end %>
+    <%= flash[:message] %>
+</p>
 <footer>
     <br>
     <p><%= link_to "Home Page", "/" %></p>

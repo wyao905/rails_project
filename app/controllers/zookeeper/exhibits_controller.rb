@@ -1,4 +1,7 @@
 class Zookeeper::ExhibitsController < ApplicationController
+    before_action :require_login
+    before_action :right_user
+
     def index
         @exhibits = Exhibit.all
         @user = current_user
@@ -8,13 +11,15 @@ class Zookeeper::ExhibitsController < ApplicationController
         @exhibit = Exhibit.new
         @species = Animal.species
         @user = current_user
-        @exhibit.animals.build
+        @animal = @exhibit.animals.build
     end
 
     def create
-        exhibit = Exhibit.create(exhibit_params(:name, animals_attributes: [:name, :species]))
-        if exhibit.save
-            redirect_to zookeeper_user_exhibits_path(current_user)
+        @user = current_user
+        @exhibit = Exhibit.create(exhibit_params(:name, animals_attributes: [:name, :species]))
+
+        if @exhibit.save
+            redirect_to zookeeper_user_exhibits_path(@user)
         else
             render :new
         end
@@ -32,9 +37,14 @@ class Zookeeper::ExhibitsController < ApplicationController
     end
 
     def update
-        exhibit = Exhibit.find(params[:id])
-        exhibit.update(exhibit_params(:name))
-        redirect_to zookeeper_user_exhibit_path(current_user, exhibit)
+        @exhibit = Exhibit.find(params[:id])
+        @user = current_user
+        if @exhibit.update(exhibit_params(:name))
+            redirect_to zookeeper_user_exhibit_path(@user, exhibit)
+        else
+            @animal = Animal.new
+            render :edit
+        end
     end
 
     private

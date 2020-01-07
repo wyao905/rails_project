@@ -1,10 +1,17 @@
-<h1>Edit <%= @exhibit.name %></h1>
+<h1>Edit Exhibit</h1>
 <p>
     <%= form_for @exhibit, url: zookeeper_user_exhibit_path(@user, @exhibit), method: "PATCH" do |f| %>
         Edit Exhibit Name:<br>
-        <%= f.text_field :name, value: nil %>
+        <%= f.text_field :name, value: nil %><br><br>
         <%= f.submit %>
-    <% end %>    
+    <% end %>
+</p>
+<p>
+    <% if @exhibit.errors.any? %>
+        <% @exhibit.errors.full_messages.each do |msg| %>
+            <%= msg %><br>
+        <% end %>
+    <% end %>
 </p>
 <h3>Current Funds: $<%= @exhibit.funds %></h3>
 <h3>Current Animals</h3>
@@ -30,4 +37,11 @@
         <%= f.submit "Add New Animal" %>
     <% end %>
 </p>
-<p><%= flash[:message] %></p>
+<p>
+    <% if @animal.errors.any? %>
+        <% @animal.errors.full_messages.each do |msg| %>
+            <%= msg %><br>
+        <% end %>
+    <% end %>
+    <%= flash[:message] %>
+</p>

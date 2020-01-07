@@ -1,0 +1,15 @@
+<h1>Edit Animal</h1>
+<p>
+    <%= form_for @animal, url: zookeeper_user_animal_path(@user, @animal), method: "PATCH" do |f| %>
+        New Name:<br>
+        <%= f.text_field :name, value: nil %><br><br>
+        <%= f.submit %>
+    <% end %>    
+</p>
+<p>
+    <% if @animal.errors.any? %>
+        <% @animal.errors.full_messages.each do |msg| %>
+            <%= msg %><br>
+        <% end %>
+    <% end %>
+</p>

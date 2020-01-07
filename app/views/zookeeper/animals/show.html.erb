@@ -1,12 +1,5 @@
 <h1><%= @animal.name %></h1>
 <p>
-    <%= form_for @animal, url: zookeeper_user_animal_path(@user, @animal), method: "PATCH" do |f| %>
-        Give <%= @animal.name %> a new name:<br>
-        <%= f.text_field :name, value: nil %>
-        <%= f.submit %>
-    <% end %>    
-</p>
-<p>
     Species: <%= @animal.species %><br>
     <%= @animal.mood %><br>
     Hunger: <%= @animal.how_hungry %><br>
@@ -21,4 +14,5 @@
     <%= link_to "Feed #{@animal.name}", zookeeper_user_animal_actions_path(@user, @animal, action_type: "Feed"), method: "POST" %>
     | <%= link_to "Give #{@animal.name} Medicine", zookeeper_user_animal_actions_path(@user, @animal, action_type: "Cure"), method: "POST" %>
     | <%= link_to "View Actions for #{@animal.name}", zookeeper_user_animal_actions_path(@user, @animal) %>
+    | <%= link_to "Rename #{@animal.name}", edit_zookeeper_user_animal_path(@user, @animal) %>
 </p>

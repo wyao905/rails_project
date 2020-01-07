@@ -5,6 +5,7 @@ class Exhibit < ApplicationRecord
 
     validates :name, presence: true
     validates :funds, numericality: { only_integer: true }
+    validates_associated :animals
 
     def animals_attributes=(animal_attributes)
         animal_attributes.values.each do |animal_attribute|

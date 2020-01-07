@@ -1,4 +1,6 @@
 class ExhibitsController < ApplicationController
+    before_action :require_login
+
     def index
         @exhibits = Exhibit.all
     end
