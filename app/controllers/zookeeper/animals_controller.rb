@@ -1,15 +1,12 @@
 class Zookeeper::AnimalsController < ApplicationController
-    before_action :require_login
-    before_action :right_user
+    before_action :require_login, :right_user, :inst_user
 
     def index
-        @exhibits = Exhibit.all.sort_by{|a| [a.name]}
-        @user = current_user
+        @exhibits = Exhibit.order(:name)
     end
 
     def create
         exhibit = Exhibit.find(params[:animal][:exhibit_id])
-        @user = current_user
 
         if exhibit.funds >= 200
             @animal = exhibit.animals.build(animal_params(:name, :species))
@@ -34,17 +31,14 @@ class Zookeeper::AnimalsController < ApplicationController
 
     def show
         @animal = Animal.find(params[:id])
-        @user = current_user
     end
 
     def edit
         @animal = Animal.find(params[:id])
-        @user = current_user
     end
 
     def update
         @animal = Animal.find(params[:id])
-        @user = current_user
         if @animal.update(animal_params(:name))
             redirect_to zookeeper_user_animal_path(current_user, @animal)
         else

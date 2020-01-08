@@ -1,4 +1,5 @@
 <h1>Welcome <%= @user.username %>!</h1>
+<p><%= flash[:message] %></p>
 <p><%= link_to "Edit Profile", edit_user_path(@user) %></p>
 <h3><%= link_to "Visit the Zoo", exhibits_path %></h3>
 
@@ -6,9 +7,16 @@
 <h3>Make a Donation</h3>
 <p>Your remaining balance: $<%= @user.balance %><br></p>
 <p>
-    <%= form_for Donation.new, url: user_donations_path(@user), method: "POST" do |f| %>
+    <%= form_for @donation, url: user_donations_path(@user), method: "POST" do |f| %>
         Amount:<br>
-        <%= f.text_field :amount %><br><br>
+        <%= f.text_field :amount %>
+        <p>
+            <% if @donation.errors.any? %>
+                <% @donation.errors.full_messages.each do |msg| %>
+                    <%= msg %><br>
+                <% end %>
+            <% end %>
+        </p>
         Add a message:<br>
         <%= f.text_area :message %><br>
         Select an exhibit:<br>

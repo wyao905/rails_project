@@ -6,10 +6,11 @@ class UsersController < ApplicationController
 
     def show
         @user = current_user
-        @user.donations.build
+        @donation = Donation.new
     end
 
     def new
+        binding.pry
         @user = User.new
         render layout: false
     end

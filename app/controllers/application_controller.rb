@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :right_user
+    helper_method :current_user, :right_user, :inst_user
 
     def current_user
         User.find(session[:user_id])
+    end
+
+    def inst_user
+        @user = current_user
     end
 
     def require_login

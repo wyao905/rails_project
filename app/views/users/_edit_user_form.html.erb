@@ -1,0 +1,12 @@
+Change Username:<br>
+<%= form_builder.text_field :username, value: nil, placeholder: user.username %><br><br>
+Change Password:<br>
+<%= form_builder.text_field :password %><br><br>
+        
+<% if !user.zookeeper %>
+    Current Balance: <%= user.balance %><br>
+    Add to Balance:<br>
+    <%= form_builder.text_field :balance, value: nil, placeholder: user.balance %><br><br>
+<% end %>
+
+<%= form_builder.submit %>

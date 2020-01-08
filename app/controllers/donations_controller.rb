@@ -1,27 +1,24 @@
 class DonationsController < ApplicationController
-    before_action :require_login
-    before_action :right_user
+    before_action :require_login, :right_user, :inst_user
 
     def index
-        @user = current_user
     end
 
     def create
-        donation = current_user.donations.build(donation_params(:amount, :message, :exhibit_id))
-        if donation.save
-            new_balance = current_user.balance - donation.amount
-            new_fund = donation.exhibit.funds + donation.amount
-            current_user.update(balance: new_balance)
-            donation.exhibit.update(funds: new_fund)
+        @donation = @user.donations.build(donation_params(:amount, :message, :exhibit_id))
+        if @donation.save
+            new_balance = @user.balance - @donation.amount
+            new_fund = @donation.exhibit.funds + @donation.amount
+            @user.update(balance: new_balance)
+            @donation.exhibit.update(funds: new_fund)
 
-            redirect_to user_path(current_user)
+            redirect_to user_path(@user)
         else
             render "users/show"
         end
     end
 
     def edit
-        @user = current_user
         @donation = Donation.find(params[:id])
         if @donation.user != @user
             return head(:forbidden)

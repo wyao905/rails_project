@@ -1,8 +1,6 @@
 <h1><%= @user.username %></h1>
 <p>
     <%= form_for @user, url: zookeeper_user_path(@user), method: "PATCH" do |f| %>
-        Change Username: <%= f.text_field :username, value: nil %><br>
-        Change Password: <%= f.text_field :password, value: nil %><br><br>
-        <%= f.submit %>
+        <%= render partial: "users/edit_user_form", locals: {form_builder: f, user: @user} %>
     <% end %>
 </p>
