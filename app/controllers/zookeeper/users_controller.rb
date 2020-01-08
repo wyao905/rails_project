@@ -23,7 +23,8 @@ class Zookeeper::UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
-        @user.update(user_params(:username, :password))
+        @user.update(username: params[:user][:username]) if !params[:user][:username].empty?
+        @user.update(password: params[:user][:password]) if !params[:user][:password].empty?
         redirect_to zookeeper_user_path(@user)
     end
 

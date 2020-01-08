@@ -12,10 +12,7 @@
     
     <h4>Animal Info</h4>
     <%= f.fields_for :animals do |animal_builder| %>
-        <%= animal_builder.label "Name:" %><br>
-        <%= animal_builder.text_field :name %><br><br>
-        <%= animal_builder.label "Species:" %><br>
-        <%= animal_builder.text_field :species %><br><br>
+        <%= render partial: "new_animal_form", locals: {animal_builder: animal_builder} %>
     <% end %>
     <%= f.submit %>
 <% end %>

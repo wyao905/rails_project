@@ -30,10 +30,7 @@
     <h3>Add new animal to the exhibit (costs $200).</h3>
     <%= form_for @animal, url: zookeeper_user_animals_path(@user), method: "POST" do |f| %>
         <%= f.hidden_field :exhibit_id, {:value => @exhibit.id} %>
-        <%= f.label "Name" %><br>
-        <%= f.text_field :name %><br><br>
-        <%= f.label "Species" %><br>
-        <%= f.text_field :species %><br><br>
+        <%= render partial: "new_animal_form", locals: {animal_builder: f} %>
         <%= f.submit "Add New Animal" %>
     <% end %>
 </p>
