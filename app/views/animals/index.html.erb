@@ -1,14 +1,1 @@
-<h1>Animals</h1>
-<p>
-    <% @exhibits.each do |exhibit| %>
-        <h3><%= exhibit.name %> Exhibit</h3>
-        <% if exhibit.animals.empty? %>
-            <p>There are no animals currently in this exhibit.</p>
-        <% else %>
-            <% exhibit.animals.each do |animal| %>
-                <%= "#{animal.species} - #{animal.name}" %>
-                | <%= link_to "View #{animal.name}", animal_path(animal) %><br>
-            <% end %>
-        <% end %>
-    <% end %>
-</p>
+<%= render partial: "animals/index_animals", locals: {exhibits: @exhibits, user: nil} %>

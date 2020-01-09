@@ -1,4 +1,5 @@
-<%= render partial: "animals/show_animal", locals: {animal: @animal} %>
+<h1><%= @animal.name %></h1>
+<p><%= render partial: "animals/show_animal", locals: {animal: @animal} %></p>
 <p>
     <%= flash[:message] %><br>
     <%= link_to "Feed #{@animal.name}", zookeeper_user_animal_actions_path(@user, @animal, action_type: "Feed"), method: "POST" %>

@@ -1,16 +1,13 @@
 <h1><%= @exhibit.name %></h1>
 <h3>Looking in, you can see the following animals.</h3>
 
-<% @exhibit.animals.each do |animal| %>
-    <p>
-        <%= animal.name %><br>
-        Species: <%= animal.species %><br>
-        <%= animal.mood %><br>
-        Hunger: <%= animal.how_hungry %><br>
-        Health: <% if animal.sick %>
-            <%= animal.name %> appears to be sick.
-        <% else %>
-            <%= animal.name %> seems healthy.
-        <% end %>
-    </p>
+<% if @exhibit.animals.empty? %>
+    <p>There are no animals currently in this exhibit.</p>
+<% else %>
+    <% @exhibit.animals.each do |animal| %>
+        <p>
+            <%= animal.name %><br>
+            <%= render partial: "animals/show_animal", locals: {animal: animal} %>
+        </p>
+    <% end %>
 <% end %>
