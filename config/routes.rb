@@ -21,5 +21,6 @@ Rails.application.routes.draw do
 
   get '/signin', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
+  get '/auth/google_oauth2/callback', to: 'sessions#create_google'
   post '/sessions', to: 'sessions#create'
 end

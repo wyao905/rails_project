@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
     before_action :require_login
     before_action :right_user
-    skip_before_action :require_login, only: [:new, :create]
-    skip_before_action :right_user, only: [:new, :create]
-
+    skip_before_action :require_login, only: [:new, :create, :index]
+    skip_before_action :right_user, only: [:new, :create, :index]
+    
     def show
         @user = current_user
         @donation = Donation.new
