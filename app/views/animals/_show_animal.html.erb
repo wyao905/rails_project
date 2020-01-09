@@ -1,0 +1,11 @@
+<h1><%= animal.name %></h1>
+<p>
+    Species: <%= animal.species %><br>
+    <%= animal.mood %><br>
+    Hunger: <%= animal.how_hungry %><br>
+    Health: <% if animal.sick %>
+        <%= animal.name %> appears to be sick.
+    <% else %>
+        <%= animal.name %> seems healthy.
+    <% end %>
+</p>
