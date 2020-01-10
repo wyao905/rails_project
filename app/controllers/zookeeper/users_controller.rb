@@ -1,5 +1,6 @@
 class Zookeeper::UsersController < ApplicationController
     before_action :require_login, :right_user
+    skip_before_action :right_user, only: [:create]
 
     def show
         @user = current_user
