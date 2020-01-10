@@ -1,24 +1,21 @@
-# README
+# Expense Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to the virtual zoo. Here you can take a tour through the different exhibits, view the animals living in them, and increase their quality of life with donations.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+1. Clone this repo and cd to the root directory
+2. run 'bundle install'
+3. run 'rails db:migrate' (first time only)
 
-* System dependencies
+## Usage
 
-* Configuration
+To visit the zoo, run 'rails s' in the terminal and visit 'http://localhost:3000/' in your browser.
 
-* Database creation
+## Contributing
 
-* Database initialization
+Bug reports and pull requests are welcome on GitHub at https://github.com/wyao905/rails_project.git. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-* How to run the test suite
+## License
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
