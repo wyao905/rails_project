@@ -1,4 +1,4 @@
-# Expense Tracker
+# Virtual Zoo
 
 Welcome to the virtual zoo. Here you can take a tour through the different exhibits, view the animals living in them, and increase their quality of life with donations.
 
