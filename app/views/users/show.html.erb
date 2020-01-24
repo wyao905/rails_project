@@ -24,4 +24,11 @@
         <%= f.submit "Donate" %>
     <% end %>
     <h4><%= link_to "View Your Donations", user_donations_path(@user) %></h4>
+
+    <h3>Exhibits</h3>
+    <ul>
+        <% @user.exhibits.each do |exhibit| %>
+            <li><%= exhibit.name %></li>
+        <% end %>
+    </ul>
 </p>

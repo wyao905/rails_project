@@ -5,6 +5,8 @@ class Animal < ApplicationRecord
 
     validates :name, :species, presence: true
 
+    scope :is_sick, -> {where(sick: true)}
+
     def mood
         score = self.hunger.to_i
         if self.sick
